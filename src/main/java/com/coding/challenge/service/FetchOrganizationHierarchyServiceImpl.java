@@ -33,6 +33,11 @@ public class FetchOrganizationHierarchyServiceImpl implements FetchOrganizationH
 		{
 			ViewEmployeeHierarchyResponse   response 					= new ViewEmployeeHierarchyResponse();
 			List<EmployeeDetails> 			manager 						= employeeHierarchyRepository.findAllByManagerId(null);// get the one which does not have an manager
+			if(manager == null || manager.size() != 1)
+			{
+				LOGGER.error("Invalid Employee Hierarchy !!");
+				throw new EmployeeHierarchyValidationException();
+			}
 			EmployeeRepresentationDTO  		employeeRepresentationDTO 	= populateEmployeeHirarchy(manager.get(0));
 			response.setEmployeeRepresentationDTO(employeeRepresentationDTO);
 			response.setErrorMessage(null);

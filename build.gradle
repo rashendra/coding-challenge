@@ -1,0 +1,53 @@
+buildscript {
+
+	ext {
+		springBootVersion = '1.5.6.RELEASE'
+	}
+	
+    repositories {
+        mavenCentral()
+    }
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
+}
+
+apply plugin: 'java'
+apply plugin:'application'
+apply plugin: 'idea'
+apply plugin: 'org.springframework.boot'
+
+sourceCompatibility = 1.8
+
+mainClassName = "com.coding.challenge.Application"
+
+jar {
+    baseName = 'angular-spring-data-rest-sample'
+    version =  '0.1.0'
+
+    // add the generated grunt sources to the static folder such that Spring Boot
+    // exposes them correctly in the jar file
+    from("$buildDir/grunt/webapp") {
+        into "static"
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile("org.springframework.boot:spring-boot-starter-web")
+    compile ('org.springframework.boot:spring-boot-starter-validation')
+    	compile('org.springframework.boot:spring-boot-starter-security')
+    compile("org.springframework.boot:spring-boot-starter-data-jpa")
+    compile("org.springframework.boot:spring-boot-starter-data-rest")
+    compile ('org.apache.logging.log4j:log4j-api:2.8.2')
+    compile ('org.apache.logging.log4j:log4j-core:2.8.2')
+    compile("com.h2database:h2")
+    
+    	testCompile ('org.springframework.boot:spring-boot-starter-test')
+	testCompile ('io.rest-assured:rest-assured:3.0.3')
+	testCompile ('org.assertj:assertj-core:3.8.0')
+}
+

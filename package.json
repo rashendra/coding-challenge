@@ -1,0 +1,43 @@
+{
+    "name": "angular-spring-data-rest-sample",
+    "version": "0.1.0",
+    "description": "Spring Boot based sample project for the https://github.com/guylabs/angular-spring-data-rest Angular module.",
+    "keywords": [
+        "AngularJS",
+        "angular",
+        "Spring",
+        "Spring Data",
+        "REST",
+        "Spring Data REST"
+    ],
+    "homepage": "http://guylabs.ch/project/angular-spring-data-rest",
+    "bugs": "https://github.com/guylabs/angular-spring-data-rest-sample/issues",
+    "author": {
+        "name": "Guy Brand",
+        "email": "admin@guylabs.org",
+        "url": "http://guylabs.ch"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/guylabs/angular-spring-data-rest-sample.git"
+    },
+    "devDependencies": {
+        "load-grunt-tasks": "~3.4.0",
+        "time-grunt": "~1.2.2",
+        "grunt-contrib-clean": "~0.7.0",
+        "grunt-wiredep": "~2.0.0",
+        "grunt-contrib-htmlmin": "~0.6.0",
+        "grunt-usemin": "~3.1.1",
+        "grunt-contrib-copy": "~0.8.2",
+        "grunt-contrib-concat": "~0.5.1",
+        "grunt-contrib-uglify": "~0.11.0",
+        "grunt-contrib-cssmin": "~0.14.0",
+        "grunt-bower-install-simple": "~1.2.0"
+    },
+    "engines": {
+        "node": ">=0.8.0"
+    },
+    "dependencies": {},
+    "license": "MIT",
+    "private": true
+}

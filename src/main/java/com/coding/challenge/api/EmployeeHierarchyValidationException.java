@@ -4,6 +4,8 @@ public class EmployeeHierarchyValidationException extends Exception
 {
 
 	private String[] errorParams;
+	
+	private String errorCode;
 	 
 	
 	public EmployeeHierarchyValidationException() {
