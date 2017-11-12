@@ -82,12 +82,12 @@ var app = angular.module('coding-challenge-app', ['ui.bootstrap', 'ngResource', 
              }).then(onSuccess, onError);
          	   
          	   function onSuccess(data) {
-	         		console,log("saveEmpDetails :: success ");   
+	         		console.log("saveEmpDetails :: success ");   
          		   $scope.employeeRepresentation = data.data.viewEmployeeHierarchyResponse.employeeRepresentationDTO;
              }
                 
          	   function onError(data){
-         		  console,log("saveEmpDetails :: error ");
+         		  console.log("saveEmpDetails :: error ");
          	   	  console.log(data);
          	   }
     	   }
