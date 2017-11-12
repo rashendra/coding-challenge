@@ -69,7 +69,7 @@ public class EmployeeDetailsRepositoryImpl implements EmployeeDetailsRepository 
 		LongSupplier generateId = null;
 		if(inMemoryDatabase.size()>0){
 			generateId = () ->inMemoryDatabase.stream().map(e->e.getEmployeeId())
-					.collect(Collectors.maxBy(Comparator.naturalOrder())).get();
+					.collect(Collectors.maxBy(Comparator.naturalOrder())).get()+1L;
 		}else{
 			generateId = () -> Long.valueOf(inMemoryDatabase.size() + 1);
 		}

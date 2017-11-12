@@ -76,14 +76,13 @@ var app = angular.module('coding-challenge-app', ['ui.bootstrap', 'ngResource', 
        	   };
     	   
     	   $scope.saveEmpDetails = function(isValid) {
-    		   console.log(" This is saving the employee !!");
+    		   console.log(" This is saving the employee 123!!");
     		   $http.post('/api/v0/employeeDetails/create',$scope.employeeDetails, {
                    headers : {'API-KEY': 'xJ9a34fo' }
              }).then(onSuccess, onError);
          	   
          	   function onSuccess(data) {
 	         		console.log("saveEmpDetails :: success ");   
-         		   $scope.employeeRepresentation = data.data.viewEmployeeHierarchyResponse.employeeRepresentationDTO;
              }
                 
          	   function onError(data){
