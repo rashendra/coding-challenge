@@ -24,6 +24,7 @@ public class EmployeeDetailsServiceImpl implements EmployeeDetailsService {
 
 	@Autowired
 	EmployeeDetailsRepository employeeHierarchyRepository;
+	
 
 	public ViewEmployeeHierarchyResponse fetchOrganizationalHierarchy(ViewEmployeeHierarchyRequest request)
 			throws EmployeeHierarchyValidationException {
