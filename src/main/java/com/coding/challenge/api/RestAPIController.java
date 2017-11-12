@@ -18,7 +18,6 @@ import com.coding.challenge.service.EmployeeDetailsService;
 import static com.coding.challenge.api.ApplicationConstants.*;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
-import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
 
@@ -26,11 +25,9 @@ import javax.validation.Valid;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.annotation.Secured;
 
 /**
  * This class deals with API operations for Suburb Information.
@@ -97,13 +94,8 @@ public class RestAPIController {
 	@ResponseBody
 	@ResponseStatus(HttpStatus.OK)
 	public void clearDb() {
-		try {
-			employeeDetailsService.initialize();
-
-		} catch (EmployeeHierarchyValidationException e) {
-			LOGGER.error("Error in the fetch method: ");
-		}
-
+		LOGGER.info("Clearing the data base ::");
+		employeeDetailsService.clearDb();
 	}
 
 	private void populateErrorResponse(ViewEmployeeHierarchyResponse response) {
