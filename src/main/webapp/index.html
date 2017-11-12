@@ -64,16 +64,65 @@
  <tree parent="employeeRepresentation"></tree>
  <tr>
   <button ng-click="loadEmployeeHierarchy()" class="btn btn-default">Load Employee Hierarchy</button>
-  <button type="button" class="btn btn-danger" ng-click="clear()">Clear</button>
-  <button type="button" class="btn btn-danger" ng-click="initialize()">Initialize Employees</button>
+  <button type="button" class="btn btn-danger" ng-click="clear()">Clear Hierarchy</button>
+  <button type="button" class="btn btn-danger" ng-click="initialize()">Initialize Pre-Loaded Employees</button>
 
  </tr>
+ <hr>
+ <br></br>
+	<form class="form-horizontal" name="$parent.createEmployeeDetails"  
+	 ng-submit="saveEmpDetails(createEmployeeDetails.$valid)" novalidate>
+		 <div class="form-group">
+			<div class="col-sm-4">
+				<h3>Add Employee</h3>
+			</div>
+		</div>
+			<div class="col-sm-4">
+				<div class="input-group">
+					<span class="input-group-addon">Employee Name</span> 
+					<input type="text"	commentinputrestrictor class="form-control" maxlength="30"	
+					ng-model="employeeDetails.employeeName" id="employeeName" 	name="employeeName">
+				</div>
+			</div>
+	
+			<div class="col-sm-4">
+				<div class="input-group">
+					<span class="input-group-addon">Manager Id </span> 
+					<input type="text" commentinputrestrictor class="form-control"
+						 maxlength="5" ng-model="employeeDetails.managerId" id="managerId"	name="managerId">
+				</div>
+			</div>
+			<div class="form-group">
+		<div class="col-sm-2">
+			<button type="button" class="btn btn-danger"	ng-click="clearForm()">Clear</button>
+			<button type="submit" class="btn btn-primary pull-right">Add</button>
+		</div>
+	</div>
+	</form>
+	<hr>
+	<tr>
+	  <button type="button" class="btn btn-primary" ng-click="fetchAll()">View All Employees</button>
+	  <br></br>
+ 	</tr>
+	<table class="table table-striped table-bordered" id="employeeDetails">
+				<tr>
+                   <th>Employee Id</th>
+                   <th>Employee Name</th>
+                   <th>Manager Id</th>
+                </tr>
+                <tr style="width:100%" ng-repeat="emp in employeeDetailsList">
+	                <td>{{emp.employeeId}}</td>
+	                <td>{{emp.employeeName}}</td>
+	                <td>{{emp.managerId}}</td>
+                </tr>
+	</table>
     <hr>
 
     <footer>
         <p> Coding Challenge </p>
     </footer>
 </div>
+
 
 </body>
 </html>

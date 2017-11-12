@@ -115,8 +115,22 @@ public class EmployeeDetailsRepositoryTest
 		//when 
 		Set<EmployeeDetails> findAll = employeeDetailsRepository.findAll();
 		//then 
-		Assertions.assertThat(findAll != null && findAll.size() == 6);
+		Assertions.assertThat(findAll != null && findAll.size() == 6).isTrue();
 		
+	}
+	
+	
+	@Test 
+	public void shouldSaveEmployeeDetails()
+	{
+		//given
+		  EmployeeDetails employeeDetails = getEmployeeDetails(15l, "Rashendra", 100l);
+		
+		//when 
+	    employeeDetailsRepository.save(employeeDetails);
+		  
+		//then 
+	    Assertions.assertThat(employeeDetailsRepository.findByEmployeeId(15l).isPresent()).isTrue();  
 	}
 	
 	

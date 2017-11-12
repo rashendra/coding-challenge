@@ -10,39 +10,46 @@ import com.coding.challenge.domain.EmployeeDetails;
 /**
  * The Interface EmployeeDetailsRepository.
  */
-public interface EmployeeDetailsRepository 
-{
-	
+public interface EmployeeDetailsRepository {
+
 	/**
 	 * Find all.
 	 *
 	 * @return the sets the
 	 */
-	Set<EmployeeDetails>  			findAll();
-	
+	Set<EmployeeDetails> findAll();
+
 	/**
 	 * Find all by manager id.
 	 *
-	 * @param managerId the manager id
+	 * @param managerId
+	 *            the manager id
 	 * @return the list
 	 */
-	List<EmployeeDetails>  		 	findAllByManagerId(Long managerId);
-	
+	List<EmployeeDetails> findAllByManagerId(Long managerId);
+
 	/**
 	 * Find by employee id.
 	 *
-	 * @param employeeId the employee id
+	 * @param employeeId
+	 *            the employee id
 	 * @return the optional
 	 */
-	Optional<EmployeeDetails>   		findByEmployeeId(Long employeeId);
-	
+	Optional<EmployeeDetails> findByEmployeeId(Long employeeId);
+
 	/**
 	 * Save.
 	 *
-	 * @param entity the entity
+	 * @param entity
+	 *            the entity
 	 * @return the long
 	 */
 	Long save(EmployeeDetails entity);
 	
 	
+	/**
+	 * Delete all.
+	 */
+	void deleteAll();
+
 }

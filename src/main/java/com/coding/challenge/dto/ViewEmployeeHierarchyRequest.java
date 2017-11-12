@@ -7,13 +7,10 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility;
 
 @JsonAutoDetect(fieldVisibility = Visibility.ANY, getterVisibility = Visibility.NONE, setterVisibility = Visibility.NONE)
-@JsonPropertyOrder({    
-					"limitHeirarchy",
-})
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.WRAPPER_OBJECT) 
-@JsonTypeName(value ="viewEmployeeHierarchyRequest")
-public class ViewEmployeeHierarchyRequest 
-{
+@JsonPropertyOrder({ "limitHeirarchy", })
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.WRAPPER_OBJECT)
+@JsonTypeName(value = "viewEmployeeHierarchyRequest")
+public class ViewEmployeeHierarchyRequest {
 
 	private String limitHeirarchy;
 
@@ -24,9 +21,5 @@ public class ViewEmployeeHierarchyRequest
 	public void setLimitHeirarchy(String limitHeirarchy) {
 		this.limitHeirarchy = limitHeirarchy;
 	}
-	
-	
-	
-	
-	
+
 }

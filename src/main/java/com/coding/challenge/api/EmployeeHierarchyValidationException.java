@@ -1,13 +1,11 @@
 package com.coding.challenge.api;
 
-public class EmployeeHierarchyValidationException extends Exception
-{
+public class EmployeeHierarchyValidationException extends Exception {
 
 	private String[] errorParams;
-	
+
 	private String errorCode;
-	 
-	
+
 	public EmployeeHierarchyValidationException() {
 		super();
 	}
@@ -16,7 +14,5 @@ public class EmployeeHierarchyValidationException extends Exception
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
-	
 
 }

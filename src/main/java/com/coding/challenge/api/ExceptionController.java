@@ -18,26 +18,24 @@ import java.util.Locale;
 import static org.springframework.http.HttpStatus.BAD_REQUEST;
 
 /**
- * This class intercepts with the exceptions and return HTTP Error code 400 to users.
+ * This class intercepts with the exceptions and return HTTP Error code 400 to
+ * users.
  */
 @ControllerAdvice
 public class ExceptionController {
 
-    @Autowired
-    private MessageSource messageSource;
+	@Autowired
+	private MessageSource messageSource;
 
-   
+	@ExceptionHandler({ Exception.class, EmployeeHierarchyValidationException.class })
+	@ResponseStatus(BAD_REQUEST)
+	@ResponseBody
+	public ApiErrorMessage handleValidationException(MethodArgumentNotValidException error) {
+		BindingResult result = error.getBindingResult();
+		final List<FieldError> fieldErrors = result.getFieldErrors();
 
-    @ExceptionHandler({ Exception.class })
-    @ResponseStatus(BAD_REQUEST)
-    @ResponseBody
-    public ApiErrorMessage handleValidationException(MethodArgumentNotValidException error)
-    {
-        BindingResult result = error.getBindingResult();
-        final List<FieldError> fieldErrors = result.getFieldErrors();
+		final ApiErrorMessage apiError = new ApiErrorMessage(fieldErrors.iterator().next().getDefaultMessage(), "Er02");
+		return apiError;
+	}
 
-        final ApiErrorMessage apiError = new ApiErrorMessage(fieldErrors.iterator().next().getDefaultMessage(), "Er02");
-        return apiError;
-    }
-   
 }

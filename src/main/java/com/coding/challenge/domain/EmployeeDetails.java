@@ -1,21 +1,29 @@
 package com.coding.challenge.domain;
 
+import java.io.Serializable;
+
+import javax.validation.constraints.NotNull;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class EmployeeDetails
-{
-	
-	@JsonProperty("employeeId")
-	private Long 	employeeId;
-	
-	@JsonProperty("employeeName")
-	private String 	employeeName;
-	
-	@JsonProperty("managerId")
-	private Long   	managerId;
-	
-		
+public class EmployeeDetails implements Serializable{
 
+	@JsonProperty("employeeId")
+	private Long employeeId;
+	
+	@NotNull
+	@JsonProperty("employeeName")
+	private String employeeName;
+
+	@JsonProperty("managerId")
+	private Long managerId;
+
+	
+	public EmployeeDetails() {
+		super();
+	}
+	
+	
 	public EmployeeDetails(Long employeeId, String employeeName, Long managerId) {
 		super();
 		this.employeeId = employeeId;
@@ -71,9 +79,5 @@ public class EmployeeDetails
 			return false;
 		return true;
 	}
-	
-	
-	
-	
 
 }

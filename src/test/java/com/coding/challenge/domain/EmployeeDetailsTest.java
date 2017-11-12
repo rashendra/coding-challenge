@@ -8,27 +8,27 @@ import org.junit.Test;
 public class EmployeeDetailsTest {
 
 	@Test
-    public void shouldReturnTrueIfContactIsMeaningfullyEqual(){
-        //given
-		EmployeeDetails  emplyeeDetails 			= getEmployeeDetails(100l, "Alan", 150l);
-		EmployeeDetails  emplyeeDetailsTwo    	= new EmployeeDetails(100l, "Alan", 150l);
+	public void shouldReturnTrueIfContactIsMeaningfullyEqual() {
+		// given
+		EmployeeDetails emplyeeDetails = getEmployeeDetails(100l, "Alan", 150l);
+		EmployeeDetails emplyeeDetailsTwo = new EmployeeDetails(100l, "Alan", 150l);
 
-        //when
-        boolean 	 isEqual 			= emplyeeDetails.equals(emplyeeDetailsTwo);
-        //then
-        Assertions.assertThat(isEqual).isTrue();
-    }
+		// when
+		boolean isEqual = emplyeeDetails.equals(emplyeeDetailsTwo);
+		// then
+		Assertions.assertThat(isEqual).isTrue();
+	}
 
-    @Test
-    public void shouldReturnFalseIfContactIsNotMeaningfullyEqual(){
-    	 
-    		//given
-		EmployeeDetails  emplyeeDetails 			= getEmployeeDetails(101l, "Alan", 150l);
-		EmployeeDetails  emplyeeDetailsTwo    	= new EmployeeDetails(100l, "Alan", 150l);
+	@Test
+	public void shouldReturnFalseIfContactIsNotMeaningfullyEqual() {
 
-        //when
-        boolean 	 isEqual 			= emplyeeDetails.equals(emplyeeDetailsTwo);
-        //then
-        Assertions.assertThat(isEqual).isFalse();
-    }
+		// given
+		EmployeeDetails emplyeeDetails = getEmployeeDetails(101l, "Alan", 150l);
+		EmployeeDetails emplyeeDetailsTwo = new EmployeeDetails(100l, "Alan", 150l);
+
+		// when
+		boolean isEqual = emplyeeDetails.equals(emplyeeDetailsTwo);
+		// then
+		Assertions.assertThat(isEqual).isFalse();
+	}
 }
