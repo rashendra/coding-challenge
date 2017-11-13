@@ -49,6 +49,7 @@ public class EmployeeDetailsServiceTest
 	  @Test 
 	  public void shouldCreateEmployeeHierarchy()
 	  {
+		  //given
 		  Set<EmployeeDetails> employeeDetailsList = getEmployeeDetailsList();
 		  Mockito.when(employeeHierarchyRepository.findAll()).thenReturn(employeeDetailsList);
 		  
@@ -66,20 +67,23 @@ public class EmployeeDetailsServiceTest
 		 
 		  try 
 		  {
-			ViewEmployeeHierarchyRequest request = new ViewEmployeeHierarchyRequest();  
+			  ViewEmployeeHierarchyRequest request = new ViewEmployeeHierarchyRequest();  
+			  //when
 			  EmployeeRepresentationDTO fetchOrganizationalHierarchy = 	  employeeDetailsService.fetchOrganizationalHierarchy(request).getEmployeeRepresentationDTO();
-			  System.out.println(fetchOrganizationalHierarchy.getEmployeeName());
 			  List<EmployeeRepresentationDTO> firstLevelSubs = fetchOrganizationalHierarchy.getSubs();
+			  int secondLevleEmpCount = 0;
 			  for(EmployeeRepresentationDTO employeeRepresentation :firstLevelSubs)
 			  {
-				  System.out.println("		"+employeeRepresentation.getEmployeeName());
 				  List<EmployeeRepresentationDTO> secondLevel = employeeRepresentation.getSubs();
 				  
 				  for(EmployeeRepresentationDTO employeeRepresentationSecondLeve :secondLevel)
 				  {
-					  System.out.println("				"+employeeRepresentationSecondLeve.getEmployeeName());
+					  secondLevleEmpCount++;
 				  }
 			  }
+			 
+			  //then
+			  Assertions.assertThat(secondLevleEmpCount == 3).isTrue();  
 		  } 
 		  catch (EmployeeHierarchyValidationException e1) 
 		  {
