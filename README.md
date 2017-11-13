@@ -24,6 +24,8 @@ Go to the project root directory and run following commands
     
 ###### To Run the application    
     ./gradlew bootRun or just gradle bootRun
+###Once deployed the web application can be accessed using the below url 
+   http://localhost:8080/
 
 
 ## Access the API
