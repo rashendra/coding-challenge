@@ -60,7 +60,11 @@
 
 
 <div class="container"  ng-controller="EmployeeDetailsController"  ng-init="fetchAll()">
-
+   <div class="form-group">
+			<div class="col-sm-4">
+				<h3>Employee Hierarchy </h3>
+			</div>
+	</div>
  <tree parent="employeeRepresentation"></tree>
  <tr>
   <button ng-click="loadEmployeeHierarchy()" class="btn btn-default">Load Employee Hierarchy</button>
