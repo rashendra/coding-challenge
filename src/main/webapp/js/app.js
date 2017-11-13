@@ -126,6 +126,7 @@ var app = angular
 								$scope.invalidManagerId = false;
 								$scope.isManager = false;
 								$scope.fetchAll();
+								$scope.loadEmployeeHierarchy();
 							}
 
 							function onError(data) {
