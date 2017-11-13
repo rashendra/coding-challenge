@@ -1,6 +1,5 @@
 package com.coding.challenge.api;
 
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -110,8 +109,18 @@ public class RestAPIController {
 	public ViewEmployeeHierarchyRequest retrieveManageContactsRequest() {
 		LOGGER.info("executing retrieveManageContactsRequest: ");
 		ViewEmployeeHierarchyRequest request = new ViewEmployeeHierarchyRequest();
-		request.setLimitHeirarchy("10");
+		request.setLimitHierarchy("10");
 		return request;
+	}
+	
+	@RequestMapping(value = RETRIEVE_EMP_DETAILS, method = RequestMethod.GET)
+	@ResponseBody
+	public EmployeeDetails retrieveEmployeeDetails() {
+		LOGGER.info("executing retrieveManageContactsRequest: ");
+		EmployeeDetails empDetails = new EmployeeDetails();
+		empDetails.setManagerId(10l);
+		empDetails.setEmployeeName("Rashendra");
+		return empDetails;
 	}
 
 }

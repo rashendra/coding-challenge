@@ -16,6 +16,8 @@ public class ApplicationConstants {
 	public static final String CLEAR_DB = "/clearDb";
 
 	public static final String RETRIEVE_VIEW_EMP_HIERARCHY_REQ = "/retrieveViewEmployeeHierarchyRequest";
+	
+	public static final String RETRIEVE_EMP_DETAILS= "/retrieveEmployeeDetails";
 
 	public static final String EMP_DETAILS_API_V0 = API_V0 + EMPLOYEE_DETAILS;
 
