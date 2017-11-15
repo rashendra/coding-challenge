@@ -1,6 +1,5 @@
 package com.coding.challenge.service;
 
-import org.apache.http.impl.io.SocketOutputBuffer;
 import org.apache.log4j.Logger;
 import org.assertj.core.api.Assertions;
 import org.junit.Before;
@@ -54,10 +53,8 @@ public class EmployeeDetailsServiceTest
 	  }
 	  
 	  
-	  @Test 
-	  public void shouldCreateEmployeeHierarchy()
+	  private void mockEmployeeHierarchyRepository()
 	  {
-		  //given
 		  Set<EmployeeDetails> employeeDetailsList = getEmployeeDetailsList();
 		  Mockito.when(employeeHierarchyRepository.findAll()).thenReturn(employeeDetailsList);
 		  
@@ -72,7 +69,13 @@ public class EmployeeDetailsServiceTest
 		  Mockito.when(employeeHierarchyRepository.findAllByManagerId(220l)).thenReturn(new ArrayList<EmployeeDetails>());
 		  Mockito.when(employeeHierarchyRepository.findAllByManagerId(275l)).thenReturn(new ArrayList<EmployeeDetails>());
 		  Mockito.when(employeeHierarchyRepository.findAllByManagerId(190l)).thenReturn(new ArrayList<EmployeeDetails>());
-		 
+	  }
+	  
+	  @Test 
+	  public void shouldCreateEmployeeHierarchy()
+	  {
+		  //given
+		  mockEmployeeHierarchyRepository();
 		  try 
 		  {
 			  ViewEmployeeHierarchyRequest request = new ViewEmployeeHierarchyRequest();  
@@ -80,8 +83,10 @@ public class EmployeeDetailsServiceTest
 			  EmployeeRepresentationDTO fetchOrganizationalHierarchy = 	  employeeDetailsService.fetchOrganizationalHierarchy(request).getEmployeeRepresentationDTO();
 			  List<EmployeeRepresentationDTO> firstLevelSubs = fetchOrganizationalHierarchy.getSubs();
 			  int secondLevleEmpCount = 0;
+			  int firstLevleEmpCount  = 0;
 			  for(EmployeeRepresentationDTO employeeRepresentation :firstLevelSubs)
 			  {
+				  firstLevleEmpCount++;
 				  List<EmployeeRepresentationDTO> secondLevel = employeeRepresentation.getSubs();
 				  
 				  for(EmployeeRepresentationDTO employeeRepresentationSecondLeve :secondLevel)
@@ -89,12 +94,37 @@ public class EmployeeDetailsServiceTest
 					  secondLevleEmpCount++;
 				  }
 			  }
-			 
 			  //then
-			  Assertions.assertThat(secondLevleEmpCount == 3).isTrue();  
+			  Assertions.assertThat(secondLevleEmpCount == 3).isTrue();
+			  Assertions.assertThat(firstLevleEmpCount == 2).isTrue();
+		  } 
+		  catch (EmployeeHierarchyValidationException e1) 
+		  {
+			e1.printStackTrace();
+		  }
+		  
+	  }
+	  
+	  @Test 
+	  public void shouldCallFindAllByManagerIdOnlyOnceForEachEmployee()
+	  {
+		  //given
+		  mockEmployeeHierarchyRepository();
+		  try 
+		  {
+			  ViewEmployeeHierarchyRequest request = new ViewEmployeeHierarchyRequest();  
+			  //when
+			  employeeDetailsService.fetchOrganizationalHierarchy(request).getEmployeeRepresentationDTO();
+			  
 			  verify(employeeHierarchyRepository, times(1)).findAllByManagerId(null);
 			  verify(employeeHierarchyRepository, times(1)).findAllByManagerId(100l);
 			  verify(employeeHierarchyRepository, times(1)).findAllByManagerId(400l);
+			  
+			  verify(employeeHierarchyRepository, times(1)).findAllByManagerId(220l);
+			  verify(employeeHierarchyRepository, times(1)).findAllByManagerId(150l);
+			  verify(employeeHierarchyRepository, times(1)).findAllByManagerId(275l);
+			  
+			  verify(employeeHierarchyRepository, times(1)).findAllByManagerId(190l);
 		  } 
 		  catch (EmployeeHierarchyValidationException e1) 
 		  {
