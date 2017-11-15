@@ -10,6 +10,14 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
+import static org.mockito.Mockito.atLeast;
+import static org.mockito.Mockito.atLeastOnce;
+import static org.mockito.Mockito.atMost;
+import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.only;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+
 import com.coding.challenge.api.EmployeeHierarchyValidationException;
 import com.coding.challenge.domain.EmployeeDetails;
 import com.coding.challenge.dto.EmployeeRepresentationDTO;
@@ -84,6 +92,9 @@ public class EmployeeDetailsServiceTest
 			 
 			  //then
 			  Assertions.assertThat(secondLevleEmpCount == 3).isTrue();  
+			  verify(employeeHierarchyRepository, times(1)).findAllByManagerId(null);
+			  verify(employeeHierarchyRepository, times(1)).findAllByManagerId(100l);
+			  verify(employeeHierarchyRepository, times(1)).findAllByManagerId(400l);
 		  } 
 		  catch (EmployeeHierarchyValidationException e1) 
 		  {
